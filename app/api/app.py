@@ -11,6 +11,14 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
+# Connect to Elasticsearch
+if os.environ.get('DOCKER_MACHINE_IP') is None:
+    es_host = "http://localhost:9200"
+else:
+    es_host = "http://"+os.environ['DOCKER_MACHINE_IP']+":9200"
+print('Elastic host is {}'.format(es_host))
+es = Elasticsearch(hosts=[es_host])
+
 @app.before_first_request
 def bootstrap():
     """
@@ -79,9 +87,6 @@ class HotelIndexer(Resource):
         Returns:
             Success message
         """
-        # Connect to elasticsearch
-        es = Elasticsearch(hosts=["http://localhost:9200"])
-
         # Delete index if exists
         es.indices.delete(index="normalized_sentiment")
 
@@ -113,9 +118,6 @@ class HotelIndexer(Resource):
         args = hotel_indexer_get_args.parse_args()
         hotel = args.hotel
 
-        # Connect to elasticsearch
-        es = Elasticsearch(hosts=["http://localhost:9200"])
-
         # Prepare query
         body = {
             "from":0,
@@ -141,4 +143,4 @@ api.add_resource(HotelIndexer, "/hotel-indexer")
 
 if __name__ == '__main__':
     # Run app
-    app.run(host='0.0.0.0', debug=True, port=int(os.getenv('PORT', 5000)))
+    app.run(host='0.0.0.0', debug=True)

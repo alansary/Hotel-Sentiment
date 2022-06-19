@@ -61,12 +61,6 @@ $ curl -X GET -H "Content-Type: application/json" -d '{"hotel": "Hotel Olcott"}'
 $ docker compose up --build
 ```
 
-### Run Docker Container
-
-```bash
-$ docker run -p5000:5000 alansary/hotelsentiment
-```
-
 ### Sample Requests
 
 ```bash
