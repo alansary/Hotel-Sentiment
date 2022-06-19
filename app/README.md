@@ -24,13 +24,17 @@ Contains the development Python Notebook that contains the following sections:
 - Deployment Pipeline
 ### app
 Contains Flask app and docker-compose to build docker image. The app structure is as follows:
-- data: Contains source, processed and normalized sentiment data
-- models: Contains pickled model(s)
-- utilities: Contains utility functions for different services
-- app.py: App entry point, contains the APIs for different services and the bootstrap function
-- config.json: Contains constants used throughout the code
+- api/data: Contains source, processed and normalized sentiment data
+- api/models: Contains pickled model(s)
+- api/utilities: Contains utility functions for different services
+- api/app.py: App entry point, contains the APIs for different services and the bootstrap function
+- api/config.json: Contains constants used throughout the code
+- api/requirements.txt: Contains the required packages to be installed
+- api/Dockerfile: API container Dockerfile
 - docker-compose.yml: Used to build the docker image
-- requirements.txt: Contains the required packages to be installed
+- start-container.sh: Script to start the docker container
+- .env: Environment variables
+- elasticsearch: Elasticsearch container config and Dockerfile
 
 ## Usage - Conda Environment
 
