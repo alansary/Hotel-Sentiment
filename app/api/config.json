@@ -1,0 +1,10 @@
+{
+    "data": {
+      "source_data_path": "data/7282_1.csv",
+      "processed_data_path": "data/processed.csv",
+      "normalized_sentiment_data_path": "data/normalized_sentiment.csv"
+    },
+    "model": {
+      "model_path": "models/pipeline.pickle"
+    }
+}
